@@ -1,0 +1,9 @@
+.botao-ver-mais2 {
+    background-color: green;
+    padding: 15px 20px;
+    cursor: pointer;
+    border-radius: 15px;
+    border: none;
+    font-size: 18px;
+    margin: 0px 10px;
+}
