@@ -1,7 +1,10 @@
 import React from 'react'
+import '../../assets/style/perfil.css'
 
 export default function Perfil() {
   return (
-    <div>Página de perfil do usuário</div>
+    <div>
+      <h2>Página de perfil do usuário</h2>
+    </div>
   )
 }

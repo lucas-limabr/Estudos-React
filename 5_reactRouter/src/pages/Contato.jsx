@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function Contato() {
   return (
-    <div>Contato</div>
+    <div style={{ textAlign: 'center' }}>Contato</div>
   )
 }

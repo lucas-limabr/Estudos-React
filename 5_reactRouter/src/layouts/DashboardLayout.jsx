@@ -1,16 +1,25 @@
-import React from 'react'
-import { NavLink, Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
+import '../assets/style/pages-dashboard.css'
 
 export default function DashboardLayout() {
     return (
         <div>
-            <nav className='menu'>
-                <NavLink to='perfil'>Perfil</NavLink>
-                <NavLink to='posts'>Posts</NavLink>
-            </nav>
+            <h3>
+                Banner em comum da Dashboard
+            </h3>
 
-            <br />
+            <aside>
+                <h2>Aside em comum da Dashboard</h2>
+            </aside>
+
+            {/* as rotas filhas vão ser  colocadas dinamicamente aqui*/}
             <Outlet />
+
+            <section>
+                Seção em comum da Dashboard
+            </section>
+            <br />
+            
         </div>
     )
 }

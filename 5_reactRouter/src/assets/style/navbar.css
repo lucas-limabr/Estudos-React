@@ -1,6 +1,47 @@
-.menu{
+nav {
+    background-color: antiquewhite;
+}
+
+ul.menu {
     display: flex;
-    gap: 20px;
-    justify-content: center;
-    padding: 20px;
+    justify-content: space-evenly;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin: 0px;
+    padding-top: 60px;
+}
+
+.nav-link-active {
+    background-color: rgb(61, 56, 49);
+    padding: 6px 12px;
+    border-radius: 50px;
+    color: white;
+}
+
+nav {
+    height: 160px;
+
+}
+
+nav li {
+    list-style: none;
+}
+
+nav a {
+    text-decoration-line: none;
+    color: rgb(72, 71, 71);
+}
+
+.nav-link-inactive:hover {
+    color: rgb(37, 37, 37);
+    text-decoration-line: underline;
+}
+
+.sub-menu-dashboard {
+   float: right;
+   margin-right: 19%;
+}
+
+.sub-menu-dashboard li {
+    margin-bottom: 10px;
 }

@@ -1,0 +1,19 @@
+section {
+    text-align: center;
+    clear: both;
+}
+
+h3 {
+    text-align: center;
+}
+
+aside {
+  float: right;
+  margin-right: '10px';
+  background-color: rgb(74, 73, 73);   
+  height: 100%;
+  color: white;
+  padding: 30px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}

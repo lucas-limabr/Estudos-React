@@ -8,7 +8,7 @@ export default function Posts() {
 
   useEffect(() => {
     const { postsData, status } = postService.getAll
-   
+
     if (!status) {
       return <p>${postsData}</p>
     }
@@ -16,15 +16,19 @@ export default function Posts() {
     setPosts(postsData)
   }, [])
 
-  
+
 
   return (
-    <div className='postCard'>
-      {
-        posts.map((post) => {
-          <PostCard key={post.id} post={post} />
-        })
-      }
+    <div style={{ textAlign: 'center' }}>
+      <h2>Página de posts</h2>
+
+      <div className='postCard'>
+        {
+          posts.map((post) => {
+            <PostCard key={post.id} post={post} />
+          })
+        }
+      </div>
     </div>
   )
 }
