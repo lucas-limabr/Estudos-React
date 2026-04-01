@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import postService from '../../features/posts/services/postService'
+import '../../assets/style/post.css'
 
 export default function Post() {
 
@@ -9,24 +10,35 @@ export default function Post() {
     const [title, setTitle] = useState("")
     const [body, setBody] = useState("")
     const [userId, setUserId] = useState("")
-
+    const [error, setError] = useState(null)
 
     useEffect(() => {
-        const { postData, status } = postService.getById(id)
+        async function loadPost() {
+            const { data, status } = await postService.getById(id)
 
-        if (!status) {
-            return <p>${postData}</p>
+            if (status != 200) {
+                setError(data)
+                return
+            }
+
+            setTitle(data.title)
+            setBody(data.body)
+            setUserId(data.userId)
+            setError(null)
         }
 
-        setTitle(postData.title)
-        setBody(postData.body)
-        setUserId(postData.userId)
+        loadPost()
+
     }, [])
 
+    if (error != null) {
+        return <p style={{ clear: 'both' }}>{error}</p>
+    }
+
     return (
-        <div>
+        <div className='box-post'>
             <h2>Detalhes do post</h2>
-            <p>ID do usuário que publicou: ${userId}</p>
+            <p>ID do usuário que publicou: {userId}</p>
             <p>Title: {title}</p>
             <p>Body: {body}</p>
         </div>

@@ -1,6 +1,6 @@
 import Container from './components/Container'
 import './App.css'
-import Navbar from './Navbar'
+import Navbar from './navbar/Navbar'
 
 import AppRoutes from './router/AppRoutes'
 

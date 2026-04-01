@@ -2,7 +2,7 @@ import '../assets/style/container.css'
 
 export default function Container({ children }) {
     return (
-        <div>
+        <div className='page-layout'>
             <main>
                 {children}
             </main>

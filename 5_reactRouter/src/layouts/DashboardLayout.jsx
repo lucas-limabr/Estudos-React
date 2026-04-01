@@ -16,7 +16,7 @@ export default function DashboardLayout() {
             <Outlet />
 
             <section>
-                Seção em comum da Dashboard
+                <h3>Seção em comum da Dashboard</h3>
             </section>
             <br />
             

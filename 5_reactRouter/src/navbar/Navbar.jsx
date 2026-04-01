@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import './assets/style/navbar.css'
+import '../assets/style/navbar.css'
 import { useState } from 'react'
 import { IoMdArrowDropdown } from "react-icons/io";
 
