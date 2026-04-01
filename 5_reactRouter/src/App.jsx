@@ -1,14 +1,14 @@
-import { useState } from 'react'
 import './App.css'
-import Navbar from './components/Navbar'
+import Navbar from './layouts/Navbar'
+
 import AppRoutes from './router/AppRoutes'
 
 function App() {
- 
+
   return (
     <>
-      <Navbar/>
-      <AppRoutes/>
+      <Navbar />
+      <AppRoutes />
     </>
   )
 }

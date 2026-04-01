@@ -3,19 +3,17 @@ import Home from '../pages/Home'
 import Contato from '../pages/Contato'
 import Sobre from '../pages/Sobre'
 import NotFound from '../pages/NotFound'
-import Produtos from '../pages/Produtos'
-import Produto from '../pages/Produto'
+import { dashboardRoutes } from './DashboardRoutes'
 
 export default function AppRoutes() {
 
     return (
         <Routes>
-            <Route path='/' element={<Home />}/>
-            <Route path='/sobre' element={<Sobre/>}/>
-            <Route path='/contato' element={<Contato/>}/>
-            <Route path='/*' element={<NotFound />}/>
-            <Route path='/produtos' element={<Produtos />} />
-            <Route path='/produtos/:id' element={<Produto/>}/>
+            <Route path='/' element={<Home />} />
+            <Route path='/sobre' element={<Sobre />} />
+            <Route path='/contato' element={<Contato />} />
+            {dashboardRoutes}
+            <Route path='*' element={<NotFound />} />
         </Routes>
     )
 }
