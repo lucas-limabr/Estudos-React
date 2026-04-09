@@ -7,6 +7,7 @@ export default function Navbar() {
 
   const [openDashboard, setOpenDashboard] = useState(false)
 
+  //isActive é um objeto definido do componente NavLink, portanto, eu tenho que utilizá-lo usando exatamente este nome no parâmetro da minha arrow function 
   const getNavLinkClass = ({ isActive }) => isActive ? 'nav-link-active' : 'nav-link-inactive'
 
   return (

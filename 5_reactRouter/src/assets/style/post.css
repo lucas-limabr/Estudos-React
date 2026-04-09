@@ -2,3 +2,25 @@
     width: 400px;
     margin: auto
 }
+
+.btn-ver-mais {
+    background-color: rgb(3, 181, 122);
+    border-radius: 5px;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    margin: 15px 0px;
+    font-size: 0.7em;
+    cursor: pointer;
+}
+
+.postCard-item{
+    width: 20%;
+    margin: auto;
+    border-radius: 30px;
+    background-color: rgb(226, 224, 222);
+}
+
+.postCard-item p {
+    padding-top: 10px;
+}

@@ -1,0 +1,38 @@
+.form-cadastro {
+    background-color: rgb(246, 222, 191);
+    width: max-content;
+    margin: auto;
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+.btn-cadastrar {
+    display: flex;
+    margin: auto;
+}
+
+.btn-cadastrar button {
+    background-color: rgb(17, 79, 237);
+}
+
+.btn-cadastrar button,
+.redirect-cadastrar-post {
+    border-radius: 5px;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    margin: 15px 0px;
+    font-size: 0.7em;
+    cursor: pointer;
+}
+
+.redirect-cadastrar-post {
+    background-color: rgb(208, 123, 4);
+}

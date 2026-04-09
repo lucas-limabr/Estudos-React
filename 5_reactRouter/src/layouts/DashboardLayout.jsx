@@ -14,12 +14,6 @@ export default function DashboardLayout() {
 
             {/* as rotas filhas vão ser  colocadas dinamicamente aqui*/}
             <Outlet />
-
-            <section>
-                <h3>Seção em comum da Dashboard</h3>
-            </section>
-            <br />
-            
         </div>
     )
 }

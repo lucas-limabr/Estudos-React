@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import postService from '../../features/posts/services/postService'
 import '../../assets/style/post.css'
 
 export default function Post() {
 
     const { id } = useParams()
+    const navigate = useNavigate()
 
     const [title, setTitle] = useState("")
     const [body, setBody] = useState("")
     const [userId, setUserId] = useState("")
     const [error, setError] = useState(null)
+
+    function backToPosts()
+    {
+        navigate('/dashboard/posts')
+    }
 
     useEffect(() => {
         async function loadPost() {
@@ -41,6 +47,8 @@ export default function Post() {
             <p>ID do usuário que publicou: {userId}</p>
             <p>Title: {title}</p>
             <p>Body: {body}</p>
+
+            <button onClick={backToPosts}>Voltar para os posts</button>
         </div>
     )
 }

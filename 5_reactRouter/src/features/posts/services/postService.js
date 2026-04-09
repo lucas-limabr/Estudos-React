@@ -8,15 +8,15 @@ const api = axios.create({
 })
 
 const postService = {
-
-    getAll: async () => {
+    getAll: async (filters = {}) => {
         let data, status
         
         try {
-            var response = await api.get('/posts')
-            const postsData = response.data
+            var response = await api.get('/posts', {
+                params: filters
+            })
+            data = response.data
             status = response.status
-            data = postsData
 
         } catch (error) {
             data = "Não foi possível buscar os posts, tente novamente!"
@@ -32,10 +32,8 @@ const postService = {
 
         try {
             var response = await api.get(`/posts/${id}`)
-            const postData = response.data
-
             status = response.status
-            data = postData
+            data = response.data
         } catch (error) {
             data = "Não foi possível buscar os post, tente novamente!"
             status = error.response.status
@@ -47,6 +45,19 @@ const postService = {
 
     //nesse método seria implementado o método POST do HTTP em uma API que permita este método
     create: async (post) => {
+        let data, status
+
+        try {
+            const response = await api.post('/posts', post)
+            status = response.status
+            data = response.data
+        } catch (error) {
+            data = "Não foi criar o post, tente novamente!"
+            status = error.response.status
+        }
+        finally{
+            return {data, status: status}
+        }
     },
 
     //nesse método seria implementado o método DELETE do HTTP em uma API que permita este método
