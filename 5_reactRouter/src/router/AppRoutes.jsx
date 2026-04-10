@@ -8,7 +8,6 @@ import Dashboard from '../pages/dashboard/Dashboard'
 import Posts from '../pages/dashboard/Posts'
 import Post from '../pages/dashboard/Post'
 import Perfil from '../pages/dashboard/Perfil'
-import CadastroPost from '../pages/dashboard/CadastroPost'
 
 export default function AppRoutes() {
 
@@ -24,7 +23,7 @@ export default function AppRoutes() {
                 <Route path='posts'>
                     <Route index element={<Posts/>}/>
                     <Route path=':id' element={<Post />} />
-                    <Route path='cadastrar' element={<CadastroPost />} />
+                    <Route path='cadastrar' element={<Post/>}/>
                 </Route> 
             </Route>
             <Route path='*' element={<NotFound />} />

@@ -3,14 +3,16 @@ import postService from '../../features/posts/services/postService'
 import PostCard from '../../components/PostCard'
 import PostFilters from '../../components/PostFilters'
 import { postParams } from '../../hook/filterParams/paramsPosts'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 export default function Posts() {
 
   const navigate = useNavigate()
+  const location = useLocation()
 
   const [posts, setPosts] = useState([])
   const [error, setError] = useState(null)
+  const [feedback, setFeedback] = useState(null)
 
   const { userId, title, size } = postParams()
 
@@ -42,6 +44,14 @@ export default function Posts() {
     return () => clearTimeout(timeout)
   }, [userId, title, size])
 
+  useEffect(() => {
+    if (location.state) {
+      setFeedback(location.state)
+
+      navigate(location.pathname, { replace: true })
+    }
+  }, [location.state]);
+
   if (error != null) {
     return <p style={{ clear: 'both' }}>{error}</p>
   }
@@ -53,6 +63,11 @@ export default function Posts() {
   return (
     <div style={{ textAlign: 'center' }}>
       <h2>Página de posts</h2>
+
+      {feedback &&
+        (
+          <p>{feedback.message}</p>
+        )}
 
       <button className='redirect-cadastrar-post' onClick={() => navigate('cadastrar')}>Cadastrar post</button>
       <PostFilters />

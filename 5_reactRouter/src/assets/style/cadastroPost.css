@@ -23,7 +23,7 @@ form {
 }
 
 .btn-cadastrar button,
-.redirect-cadastrar-post {
+.redirect-cadastrar-post, .back-to-posts {
     border-radius: 5px;
     border: none;
     color: white;
@@ -35,4 +35,13 @@ form {
 
 .redirect-cadastrar-post {
     background-color: rgb(208, 123, 4);
+}
+
+.back-to-posts{
+background-color: rgb(69, 68, 68);
+}
+
+.text-area-body{
+    display: flex;
+    margin-bottom: 10px;
 }
