@@ -9,76 +9,86 @@ const api = axios.create({
 
 const postService = {
     getAll: async (filters = {}) => {
-        let data, status
+        let data, statusCode
 
         try {
             var response = await api.get('/posts', {
                 params: filters
             })
             data = response.data
-            status = response.status
+            statusCode = response.status
 
         } catch (error) {
             data = "Não foi possível buscar os posts, tente novamente!"
-            status = error.response.status
+            statusCode = error.response.status
         }
         finally {
-            return { data, status: status }
+            return { data, statusCode }
         }
     },
 
     getById: async (id) => {
-        let data, status
+        let data, statusCode
 
         try {
             var response = await api.get(`/posts/${id}`)
-            status = response.status
+            statusCode = response.status
             data = response.data
         } catch (error) {
             data = "Não foi possível buscar os post, tente novamente!"
-            status = error.response.status
+            statusCode = error.response.status
         }
         finally {
-            return { data, status: status }
+            return { data, statusCode }
         }
     },
 
-    //nesse método seria implementado o método POST do HTTP em uma API que permita este método
     create: async (post) => {
-        let data, status
+        let data, statusCode
 
         try {
             const response = await api.post('/posts', post)
-            status = response.status
+            statusCode = response.status
             data = response.data
         } catch (error) {
             data = "Não foi possível criar o post, tente novamente!"
-            status = error.response.status
+            statusCode = error.response.status
         }
         finally {
-            return { data, status: status }
+            return { data, statusCode }
         }
     },
 
     update: async (post, id) => {
-        let data, status
+        let data, statusCode
 
         try {
             const response = await api.put(`posts/${id}`, post)
-            status = response.status
+            statusCode = response.status
             data = response.data
         } catch (error) {
             data = "Não foi possível atualizar o post, tente novamente!"
-            status = error.response.status
+            statusCode = error.response.status
         }
         finally {
-            return { data, status: status }
+            return { data, statusCode }
         }
     },
 
-    //nesse método seria implementado o método DELETE do HTTP em uma API que permita este método
     delete: async (id) => {
+        let data, statusCode
 
+        try {
+            const response = await api.delete(`posts/${id}`)
+            data = response.data
+            statusCode = response.status
+        } catch (error) {
+            data = "Não foi possível excluir o post, tente novamente!"
+            statusCode = error.response.status
+        }
+        finally {
+            return { data, statusCode }
+        }
     }
 }
 

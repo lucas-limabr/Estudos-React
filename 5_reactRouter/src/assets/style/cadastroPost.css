@@ -13,17 +13,13 @@ form {
     gap: 2px;
 }
 
-.btn-cadastrar {
+.acoes-post{
     display: flex;
     margin: auto;
+    gap: 20px;
 }
 
-.btn-cadastrar button {
-    background-color: rgb(17, 79, 237);
-}
-
-.btn-cadastrar button,
-.redirect-cadastrar-post, .back-to-posts {
+.acoes-post button, .back-to-posts, .redirect-cadastrar-post{
     border-radius: 5px;
     border: none;
     color: white;
@@ -33,15 +29,27 @@ form {
     cursor: pointer;
 }
 
+.btn-editar{
+    background-color: rgb(135, 112, 18);
+}
+
+.btn-excluir{
+    background-color: rgb(207, 43, 43);
+}
+
+.btn-cadastrar {
+    background-color: rgb(17, 79, 237);
+}
+
 .redirect-cadastrar-post {
     background-color: rgb(208, 123, 4);
 }
 
-.back-to-posts{
-background-color: rgb(69, 68, 68);
+.back-to-posts {
+    background-color: rgb(69, 68, 68);
 }
 
-.text-area-body{
+.text-area-body {
     display: flex;
     margin-bottom: 10px;
 }

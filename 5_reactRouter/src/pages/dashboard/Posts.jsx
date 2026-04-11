@@ -4,6 +4,7 @@ import PostCard from '../../components/PostCard'
 import PostFilters from '../../components/PostFilters'
 import { postParams } from '../../hook/filterParams/paramsPosts'
 import { useLocation, useNavigate } from 'react-router-dom'
+import Alert from '../../components/Alert'
 
 export default function Posts() {
 
@@ -13,6 +14,7 @@ export default function Posts() {
   const [posts, setPosts] = useState([])
   const [error, setError] = useState(null)
   const [feedback, setFeedback] = useState(null)
+  const [postsVazio, setPostsVazio] = useState(null)
 
   const { userId, title, size } = postParams()
 
@@ -26,16 +28,26 @@ export default function Posts() {
         if (title) filters.title = title
         if (size) filters.size = size
 
-        const { data, status } = await postService.getAll(filters)
+        const { data, statusCode } = await postService.getAll(filters)
 
-        if (status != 200) {
+        if (statusCode != 200) {
           setError(data)
           return
         }
 
         //funcionalidade de definir itens por página, que deve ser feita no backend, mas aqui, por estar utilizando uma API de terceiro que não me dá possibilidade de paginação, foi feita no front-end mesmo para exemplificar
-        (size) ? setPosts(data.slice(0, size)) : setPosts(data)
+        let postsCurrent = (size) ? data.slice(0, size) : data
+        setPosts(postsCurrent)
         setError(null)
+
+        //IMPORTANTE: eu não verifico posts.length == 0, pois, qualquer state não é setado imediatamente, então, por mais que na linha anterior eu tenha feito um setPosts(postsCurrent) posts ainda está vazio. O que eu preciso fazer é usar o valor de uma variável comum, em que a atribuição é feita automaticamente, sendo o resultado mais atualizado
+        if (postsCurrent.length == 0) {
+          setPostsVazio('Não há posts')
+        }
+        else {
+          setPostsVazio(null)
+        }
+
       }
 
       loadPosts()
@@ -48,6 +60,7 @@ export default function Posts() {
     if (location.state) {
       setFeedback(location.state)
 
+      // limpa o state da rota
       navigate(location.pathname, { replace: true })
     }
   }, [location.state]);
@@ -56,17 +69,17 @@ export default function Posts() {
     return <p style={{ clear: 'both' }}>{error}</p>
   }
 
-  if (posts.length == 0) {
-    return <p style={{ clear: 'both' }}>Não há posts</p>
-  }
-
   return (
     <div style={{ textAlign: 'center' }}>
       <h2>Página de posts</h2>
-
       {feedback &&
         (
-          <p>{feedback.message}</p>
+          <Alert feedback={feedback} />
+        )}
+
+      {postsVazio &&
+        (
+          <p>{postsVazio}</p>
         )}
 
       <button className='redirect-cadastrar-post' onClick={() => navigate('cadastrar')}>Cadastrar post</button>

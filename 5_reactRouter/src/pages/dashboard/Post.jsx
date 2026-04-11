@@ -20,9 +20,9 @@ export default function Post() {
 
     useEffect(() => {
         async function loadPost() {
-            const { data, status } = await postService.getById(id)
+            const { data, statusCode } = await postService.getById(id)
 
-            if (status != 200) {
+            if (statusCode != 200) {
                 setError(data)
                 return
             }
@@ -36,23 +36,39 @@ export default function Post() {
         if (id) loadPost()
     }, [])
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e, action) => {
+
         e.preventDefault()
+        let state
 
-        const dataForm = {
-            title, body, userId
-        };
+        if (action == 'excluir') {
+            state = await excluir(id)
+        }
+        else {
+            const dataForm = {
+                title, body, userId
+            };
 
-        let state = (id) ? await update(dataForm) : await create(dataForm)
+            if (action == 'update') {
+                state = await update(dataForm, id)
+            }
+            else if (action == 'create') {
+                state = await create(dataForm)
+            }
+            else {
+                throw new Error("Ação não permitida para um post");
+            }
+        }
+
         navigate('/dashboard/posts', { state })
     }
 
     // msm que a API de terceira que está sendo utilizada aceite o método POST, acontece uma inserção fake nela, este dado não é persistido, aqui está apenas como exemplificação que o endpoint funciona, mas os dados não são atualizados
     const create = async (dataForm) => {
-        const { data, status } = await postService.create(dataForm)
+        const { data, statusCode } = await postService.create(dataForm)
         let state
 
-        if (status != 201) {
+        if (statusCode != 201) {
             state = {
                 type: 'error',
                 message: data
@@ -68,11 +84,11 @@ export default function Post() {
         return state
     }
 
-    const update = async (dataForm) => {
-        const { data, status } = await postService.update(dataForm, id)
+    const update = async (dataForm, id) => {
+        const { data, statusCode } = await postService.update(dataForm, id)
         let state
 
-        if (status != 200) {
+        if (statusCode != 200) {
             state = {
                 type: 'error',
                 message: data
@@ -88,6 +104,27 @@ export default function Post() {
         return state
     }
 
+    const excluir = async (id) => {
+        const { data, statusCode } = await postService.delete(id)
+        let state
+
+        //a API pública retornar um statusCode de 200 para sucesso, mas em APIs reais, geralmente é um 204
+        if (statusCode != 200) {
+            state = {
+                type: 'error',
+                message: data
+            }
+        }
+        else {
+            state = {
+                type: 'success',
+                message: 'Post excluído com sucesso!'
+            }
+        }
+
+        return state
+    }
+
     if (error != null) {
         return <p style={{ clear: 'both' }}>{error}</p>
     }
@@ -95,7 +132,7 @@ export default function Post() {
     return (
         <div className='form-cadastro'>
             <h2>Detalhes do post</h2>
-            <form onSubmit={handleSubmit}>
+            <form>
                 <div>
                     <label htmlFor="title">Título:</label>
                     <input type="text" name="title" id="title" value={title} onChange={(e) => setTitle(e.target.value)} />
@@ -116,10 +153,15 @@ export default function Post() {
                     </select>
                 </div>
 
-                <div className='btn-cadastrar'>
-                    <button type='submit'>
-                        {id ? 'Editar' : 'Cadastrar'}
-                    </button>
+                <div className='acoes-post'>
+                    {(id) ?
+                        <>
+                            <button className='btn-editar' onClick={(e) => handleSubmit(e, 'update')}>Editar</button>
+                            <button className='btn-excluir' onClick={(e) => handleSubmit(e, 'excluir')}>Excluir</button>
+                        </>
+                        :
+                        <button className='btn-cadastrar' onClick={(e) => handleSubmit(e, 'create')}>Cadastrar</button>
+                    }
                 </div>
             </form>
 

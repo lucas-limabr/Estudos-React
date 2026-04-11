@@ -14,7 +14,7 @@
     cursor: pointer;
 }
 
-.postCard-item{
+.postCard-item {
     width: 20%;
     margin: auto;
     border-radius: 30px;
@@ -23,4 +23,21 @@
 
 .postCard-item p {
     padding-top: 10px;
+}
+
+.feedback {
+    color: white;
+    width: min-content;
+    padding: 8px 80px;
+    margin: auto;
+    text-wrap: nowrap;
+    border-radius: 30px;
+}
+
+.feedback-error {
+    background-color: red;
+}
+
+.feedback-success {
+    background-color: rgba(0, 128, 0, 0.752);
 }
