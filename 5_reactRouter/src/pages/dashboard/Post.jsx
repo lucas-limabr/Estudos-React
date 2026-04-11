@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import postService from '../../features/posts/services/postService'
+import serviceApi from '../../features/services/api'
 import '../../assets/style/post.css'
 import '../../assets/style/cadastroPost.css'
+import { create } from '../../utils/post/create'
+import { update } from '../../utils/post/update'
+import { excluir } from '../../utils/post/excluir'
 
 export default function Post() {
 
@@ -20,10 +23,10 @@ export default function Post() {
 
     useEffect(() => {
         async function loadPost() {
-            const { data, statusCode } = await postService.getById(id)
+            const { data, statusCode } = await serviceApi.setEndpoint('/posts').getById(id)
 
             if (statusCode != 200) {
-                setError(data)
+                setError('Não foi possível buscar o post, tente novamente!')
                 return
             }
 
@@ -61,68 +64,6 @@ export default function Post() {
         }
 
         navigate('/dashboard/posts', { state })
-    }
-
-    // msm que a API de terceira que está sendo utilizada aceite o método POST, acontece uma inserção fake nela, este dado não é persistido, aqui está apenas como exemplificação que o endpoint funciona, mas os dados não são atualizados
-    const create = async (dataForm) => {
-        const { data, statusCode } = await postService.create(dataForm)
-        let state
-
-        if (statusCode != 201) {
-            state = {
-                type: 'error',
-                message: data
-            }
-        }
-        else {
-            state = {
-                type: 'success',
-                message: 'Post criado com sucesso!'
-            }
-        }
-
-        return state
-    }
-
-    const update = async (dataForm, id) => {
-        const { data, statusCode } = await postService.update(dataForm, id)
-        let state
-
-        if (statusCode != 200) {
-            state = {
-                type: 'error',
-                message: data
-            }
-        }
-        else {
-            state = {
-                type: 'success',
-                message: 'Post atualizado com sucesso!'
-            }
-        }
-
-        return state
-    }
-
-    const excluir = async (id) => {
-        const { data, statusCode } = await postService.delete(id)
-        let state
-
-        //a API pública retornar um statusCode de 200 para sucesso, mas em APIs reais, geralmente é um 204
-        if (statusCode != 200) {
-            state = {
-                type: 'error',
-                message: data
-            }
-        }
-        else {
-            state = {
-                type: 'success',
-                message: 'Post excluído com sucesso!'
-            }
-        }
-
-        return state
     }
 
     if (error != null) {

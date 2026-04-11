@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import postService from '../../features/posts/services/postService'
+import serviceApi from '../../features/services/api'
 import PostCard from '../../components/PostCard'
 import PostFilters from '../../components/PostFilters'
 import { postParams } from '../../hook/filterParams/paramsPosts'
@@ -28,10 +28,10 @@ export default function Posts() {
         if (title) filters.title = title
         if (size) filters.size = size
 
-        const { data, statusCode } = await postService.getAll(filters)
+        const { data, statusCode } = await serviceApi.setEndpoint('/posts').getAll(filters)
 
         if (statusCode != 200) {
-          setError(data)
+          setError('Não foi possível buscar os posts, tente novamente!')
           return
         }
 
