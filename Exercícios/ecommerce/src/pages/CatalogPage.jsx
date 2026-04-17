@@ -1,7 +1,9 @@
-import React from 'react'
+import ProductList from '../components/ProductList'
 
 export default function CatalogPage() {
   return (
-    <div>CatalogPage</div>
+    <div className='catalog'>
+      <ProductList />
+    </div>
   )
 }

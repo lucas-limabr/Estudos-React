@@ -1,3 +1,4 @@
+const mockProducts = 
 [
     {
         "id": 1,
@@ -15,7 +16,7 @@
         "id": 3,
         "name": "Fone de Ouvido Bluetooth JBL",
         "price": 300.00,
-        "urlImage": "https://images.unsplash.com/photo-1585386959984-a415522316f3"
+        "urlImage": "https://images.unsplash.com/photo-1708766170666-6c6675155d5c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
         "id": 4,
@@ -24,3 +25,5 @@
         "urlImage": "https://images.unsplash.com/photo-1593784991095-a205069470b6"
     }
 ]
+
+export default mockProducts
