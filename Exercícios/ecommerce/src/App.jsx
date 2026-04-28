@@ -3,6 +3,7 @@ import Navbar from "./layout/Navbar"
 import AppRoutes from "./routes/AppRoutes"
 import { CartContextProvider } from "./contexts/CartContext"
 import Footer from "./components/Footer"
+import {ToastContainer} from 'react-toastify'
 
 function App() {
 
@@ -15,6 +16,14 @@ function App() {
         </CartContextProvider>
       </BrowserRouter>
       <Footer />
+      <ToastContainer
+      position="top-center"
+      autoClose={3000}
+      hideProgressBar={false}
+      closeOnClick
+      pauseOnFocusLoss
+      pauseOnHover
+      />
     </div>
 
   )
