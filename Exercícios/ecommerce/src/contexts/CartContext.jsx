@@ -25,7 +25,10 @@ export const CartContextProvider = ({ children }) => {
     }
 
     function removeItem(id) {
-        return "removido item"
+        setCartItems((prevItems) => {
+            return prevItems.filter((i) =>
+                i.id != id)
+        })
     }
 
     function updateItemQuantity(id, quantity) {

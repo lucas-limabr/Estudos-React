@@ -5,7 +5,7 @@ import { CartContext } from '../contexts/CartContext'
 export default function CartList() {
 
     const { cartItems } = useContext(CartContext)
-    console.log('cartItems: ', cartItems)
+    // console.log('cartItems: ', cartItems)
 
     return (
         <div>
