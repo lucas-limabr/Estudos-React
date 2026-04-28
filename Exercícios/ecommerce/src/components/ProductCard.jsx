@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { CartContext } from '../contexts/CartContext'
 import { toast } from 'react-toastify'
+import { formatCurrencyBRL } from '../utils/formata_moeda'
 
 export default function ProductCard({ product }) {
 
@@ -22,7 +23,7 @@ export default function ProductCard({ product }) {
     <div className='productCard'>
       <img width={180} src={product.urlImage} alt="Imagem do produto" />
       <p>{product.name}</p>
-      <p>{product.price}</p>
+      <p>{formatCurrencyBRL(product.price)}</p>
       <div className='actions-product'>
         <input type="number" id='quantity' value={quantity} onChange={(e) => setQuantity(e.target.value)} />
         <button className='add-to-cart' onClick={() => handleAdd(product)}>Adicionar ao carrinho</button>

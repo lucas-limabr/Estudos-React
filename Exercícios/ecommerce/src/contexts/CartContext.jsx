@@ -47,9 +47,9 @@ export const CartContextProvider = ({ children }) => {
         return "clear item"
     }
 
-    function cartTotal() {
-        return "cart total"
-    }
+    const cartTotal = cartItems.reduce((total, item) =>
+        total + (item.price * item.quantity), 0
+    )
 
     function cartCount() {
         return "cart count"
