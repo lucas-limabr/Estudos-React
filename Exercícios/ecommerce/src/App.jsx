@@ -12,18 +12,19 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <CartContextProvider>
+          <ToastContainer
+            position="top-center"
+            autoClose={3000}
+            hideProgressBar={false}
+            closeOnClick
+            pauseOnFocusLoss
+            pauseOnHover
+          />
           <AppRoutes />
         </CartContextProvider>
       </BrowserRouter>
+      
       <Footer />
-      <ToastContainer
-      position="top-center"
-      autoClose={3000}
-      hideProgressBar={false}
-      closeOnClick
-      pauseOnFocusLoss
-      pauseOnHover
-      />
     </div>
 
   )

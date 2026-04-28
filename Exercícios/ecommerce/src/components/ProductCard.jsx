@@ -8,7 +8,7 @@ export default function ProductCard({ product }) {
   const [quantity, setQuantity] = useState("")
 
   const handleAdd = (product) => {
-    addItem(product, parseInt(quantity))
+    addItem(product, quantity)
 
     if (isItemInCart(product.id)) {
       toast.info(`Quantidade do item ${product.name} atualizada no carrinho`)

@@ -10,6 +10,7 @@ export const CartContextProvider = ({ children }) => {
         setCartItems((prevItems) => {
             const hasItem = prevItems.find((i) => i.id == item.id)
 
+            quantity = Number(quantity)
             if (hasItem) {
                 return prevItems.map((i) =>
                     i.id == item.id ?
@@ -28,7 +29,15 @@ export const CartContextProvider = ({ children }) => {
     }
 
     function updateItemQuantity(id, quantity) {
-        return "update item"
+
+        quantity = Number(quantity)
+        setCartItems((prevItems) => {
+            return prevItems.map((i) =>
+                (i.id == id) ?
+                    { ...i, quantity: quantity }
+                    : i
+            )
+        })
     }
 
     function clearCart() {
