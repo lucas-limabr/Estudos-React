@@ -44,16 +44,14 @@ export const CartContextProvider = ({ children }) => {
     }
 
     function clearCart() {
-        return "clear item"
+        setCartItems([])
     }
 
     const cartTotal = cartItems.reduce((total, item) =>
         total + (item.price * item.quantity), 0
     )
 
-    function cartCount() {
-        return "cart count"
-    }
+    const cartCount = cartItems.length
 
     function isItemInCart(id) {
         return cartItems.some((i) => i.id == id)

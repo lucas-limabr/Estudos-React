@@ -25,8 +25,12 @@ export default function ProductCard({ product }) {
       <p>{product.name}</p>
       <p>{formatCurrencyBRL(product.price)}</p>
       <div className='actions-product'>
-        <input type="number" id='quantity' value={quantity} onChange={(e) => setQuantity(e.target.value)} />
-        <button className='add-to-cart' onClick={() => handleAdd(product)}>Adicionar ao carrinho</button>
+        <div>
+          <input type="number" id='quantity' value={quantity} onChange={(e) => setQuantity(e.target.value)} />
+        </div>
+        <div>
+          <button className='add-to-cart' onClick={() => handleAdd(product)}>Adicionar ao carrinho</button>
+        </div>
       </div>
     </div>
   )

@@ -63,7 +63,7 @@ export default function Post() {
             }
         }
 
-        navigate('/dashboard/posts', { state })
+        navigate('/dashboard/posts', {state})
     }
 
     if (error != null) {

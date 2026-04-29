@@ -4,6 +4,7 @@ import AppRoutes from "./routes/AppRoutes"
 import { CartContextProvider } from "./contexts/CartContext"
 import Footer from "./components/Footer"
 import {ToastContainer} from 'react-toastify'
+import './App.css'
 
 function App() {
 

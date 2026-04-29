@@ -12,7 +12,7 @@ export default function ProductList() {
   
     return (
     <div>
-        <h2>Catálogo de produtos</h2>
+        <h2 className='title-catalog'>Catálogo de produtos</h2>
         <div className='product-list'>
             {products && (
                 products.map((product) =>

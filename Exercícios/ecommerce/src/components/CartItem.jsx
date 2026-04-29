@@ -23,7 +23,7 @@ export default function CartItem({ cartItem }) {
       <p>R$ {cartItem.price}</p>
       <div>
         <input type="text" name="quantity" id="quantity" defaultValue={cartItem.quantity} onBlur={handleUpdate} />
-        <button onClick={() => handleDelete(cartItem.id)}>Remover</button>
+        <button className='remover' onClick={() => handleDelete(cartItem.id)}>Remover</button>
       </div>
     </div>
   )
